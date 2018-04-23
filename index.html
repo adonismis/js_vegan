@@ -59,8 +59,21 @@
                             <div class="form-group row">
                                 <label for="zown" class="col-3 col-form-label">鄉鎮</label>
                                 <div class="col-9">
-                                    <input type="text" class="form-control" id="zown" aria-describedby="zownlHelp" placeholder="請輸入鄉鎮">
-                                    <small id="zownlHelp" class="form-text text-muted">請輸入鄉鎮</small>
+                                    <select id="zown" class="form-control">
+                                        <option value="宜蘭市">宜蘭市</option>
+                                        <option value="壯圍鄉">壯圍鄉</option>
+                                        <option value="羅東鎮">羅東鎮</option>
+                                        <option value="員山鄉">員山鄉</option>
+                                        <option value="礁溪鄉">礁溪鄉</option>
+                                        <option value="頭城鎮">頭城鎮</option>
+                                        <option value="冬山鄉">冬山鄉</option>
+                                        <option value="五結鄉">五結鄉</option>
+                                        <option value="三星鄉">三星鄉</option>
+                                        <option value="大同鄉">大同鄉</option>
+                                        <option value="蘇澳鎮">蘇澳鎮</option>
+                                        <option value="南澳鄉">南澳鄉</option>
+                                    </select>
+                                    <small id="zownlHelp" class="form-text text-muted">請選擇鄉鎮</small>
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -122,7 +135,7 @@
         var ref    = firebase.database().ref('vegan');
         var jsCart = document.querySelector("#jsCart");
         var food = ''; 
-        ref.orderByChild('zown').on('value',function(snapshot){    
+        ref.orderByChild('zown').once('value',function(snapshot){    
             var cart_str = '';        
             snapshot.forEach(function(data) {
                 food = data.val();
