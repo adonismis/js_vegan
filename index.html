@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>宜蘭素食店口袋清單</title>
+</head>
+<body>
+    <header>
+        <div class="navbar navbar-dark bg-dark box-shadow">
+            <div class="container d-flex justify-content-between">
+            <a href="#" class="navbar-brand d-flex align-items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>
+                <strong>宜蘭素食店口袋清單</strong>
+            </a>
+            </div>
+        </div>
+    </header>
+
+    <!--    section class="jumbotron text-center mb-0">
+        <div class="container">
+            <h1 class="jumbotron-heading">Album example</h1>
+            <p class="lead text-muted">Something short and leading about the collection below—its contents, the creator, etc. Make it short and sweet, but not too short so folks don't simply skip over it entirely.</p>
+            <p>
+            <a href="#" class="btn btn-primary my-2">Main call to action</a>
+            <a href="#" class="btn btn-secondary my-2">Secondary action</a>
+            </p>
+            <select name="myZone" id="myZone">
+                    <option value="0">--請選擇--</option>
+                </select>
+        </div>
+    </section-->
+    
+    <div class="album py-5 bg-light">
+        <div class="container">
+            <div class="row mb-3">
+                <div class="col-md-12">
+                    <button type="button" class="btn btn-primary" id="add">
+                        +增加店家
+                    </button>
+                </div>
+            </div>
+
+            <div class="row" id="jsCart"></div>
+
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">增加店家</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="form-group row">
+                                <label for="zown" class="col-3 col-form-label">鄉鎮</label>
+                                <div class="col-9">
+                                    <input type="text" class="form-control" id="zown" aria-describedby="zownlHelp" placeholder="請輸入鄉鎮">
+                                    <small id="zownlHelp" class="form-text text-muted">請輸入鄉鎮</small>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="title" class="col-3 col-form-label">店家名稱</label>
+                                <div class="col-9">
+                                    <input type="text" class="form-control" id="title" aria-describedby="titlelHelp" placeholder="請輸入店家名稱">
+                                    <small id="titlelHelp" class="form-text text-muted">請輸入店家名稱</small>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="addr" class="col-3 col-form-label">地址</label>
+                                <div class="col-9">
+                                    <input type="text" class="form-control" id="addr" aria-describedby="addrlHelp" placeholder="請輸入地址">
+                                    <small id="addrlHelp" class="form-text text-muted">請輸入地址</small>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="phone" class="col-3 col-form-label">電話</label>
+                                <div class="col-9">
+                                    <input type="text" class="form-control" id="phone" aria-describedby="phonelHelp" placeholder="請輸入電話">
+                                    <small id="phonelHelp" class="form-text text-muted">請輸入電話</small>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="qk" class="col-3 col-form-label">開放時間</label>
+                                <div class="col-9">
+                                    <input type="text" class="form-control" id="qk" aria-describedby="qklHelp" placeholder="請輸入開放時間">
+                                    <small id="qklHelp" class="form-text text-muted">請輸入開放時間</small>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+                        <button id="save" type="button" class="btn btn-primary">儲存</button>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/4.1.3/firebase.js"></script>
+    <script>
+        // Initialize Firebase
+        // TODO: Replace with your project's customized code snippet
+        var config = {
+            apiKey: "AIzaSyADr0L6OIHokpmSxAzePGvLpT7zkXwUAgU",
+            authDomain: "foot-item.firebaseapp.com",
+            databaseURL: "https://foot-item.firebaseio.com",
+            storageBucket: "foot-item.appspot.com",
+        };
+        firebase.initializeApp(config); 
+        
+        var ref    = firebase.database().ref('vegan');
+        var jsCart = document.querySelector("#jsCart");
+        var food = ''; 
+        ref.orderByChild('zown').on('value',function(snapshot){    
+            var cart_str = '';        
+            snapshot.forEach(function(data) {
+                food = data.val();
+                title  = food.title;
+                phone  = food.phone;
+                addr   = food.addr;
+                zown   = food.zown;
+                qk     = food.qk;
+                cart_str += `<div class="col-md-4">
+                                <div class="card mb-4 box-shadow">
+                                <div class="card-body">
+                                    <h3>${title}</h3>
+                                    <p class="card-text">
+                                    ．地址：${addr}<br>
+                                    ．電話：${phone}<br>
+                                    ．開放時間：${qk}
+                                    </p>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <a href="https://www.google.com.tw/maps/place/${addr}" class="btn btn-sm btn-outline-secondary">看地圖</a>
+                                        <a href="https://www.google.com.tw/search?q=宜蘭+${title}" class="btn btn-sm btn-outline-secondary">Google搜尋</a>
+                                    </div>
+                                    <small class="text-muted">${zown}</small>
+                                    </div>
+                                </div>
+                                </div>
+                            </div>`;
+            });
+            jsCart.innerHTML = cart_str;
+        });
+
+
+        var add  = document.querySelector('#add');
+        add.addEventListener('click',function(){
+            $('#exampleModal').modal('toggle');
+        },false);
+        
+        var save = document.querySelector('#save');
+        save.addEventListener('click',function(){
+            var title = document.querySelector('#title');
+            var zown  = document.querySelector('#zown');
+            var addr  = document.querySelector('#addr');
+            var phone = document.querySelector('#phone');
+            var qk    = document.querySelector('#qk');
+            
+            ref.push({
+                'title':title.value,
+                'addr':addr.value,
+                'zown':zown.value,
+                'phone':phone.value,
+                'qk':qk.value,
+            });
+            
+            title.value = '';
+            zown.value  = '';
+            addr.value  = '';
+            phone.value = '';
+            qk.value    = '';
+
+            $('#exampleModal').modal('hide');
+        },false);
+
+
+
+
+    </script>
+
+
+
+</body>
+</html>
