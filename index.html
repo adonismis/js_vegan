@@ -135,7 +135,7 @@
         var ref    = firebase.database().ref('vegan');
         var jsCart = document.querySelector("#jsCart");
         var food = ''; 
-        ref.orderByChild('zown').once('value',function(snapshot){    
+        ref.orderByChild('zown').on('value',function(snapshot){    
             var cart_str = '';        
             snapshot.forEach(function(data) {
                 food = data.val();
